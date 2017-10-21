@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="baymin-web-ssm:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="baymin_web.war">
+    <root id="archive" name="ssm.war">
       <element id="artifact" artifact-name="baymin-web-ssm:war exploded" />
     </root>
   </artifact>
