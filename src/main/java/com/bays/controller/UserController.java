@@ -1,7 +1,7 @@
-package bays.controller;
+package com.bays.controller;
 
-import bays.model.User;
-import bays.service.UserService;
+import com.bays.model.User;
+import com.bays.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

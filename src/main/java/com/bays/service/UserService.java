@@ -1,4 +1,4 @@
-package bays.service;
+package com.bays.service;
 
 public interface UserService {
     Object selectUserById(int id);

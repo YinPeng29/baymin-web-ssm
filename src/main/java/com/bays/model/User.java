@@ -1,4 +1,4 @@
-package bays.model;
+package com.bays.model;
 
 import java.util.Date;
 
