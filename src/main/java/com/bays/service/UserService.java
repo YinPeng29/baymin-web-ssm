@@ -1,6 +1,8 @@
 package com.bays.service;
 
+import java.util.List;
+import java.util.Map;
+
 public interface UserService {
-    Object selectUserById(int id);
-    Object selectUserByName(String name);
+    public List<Map> findAll();
 }
