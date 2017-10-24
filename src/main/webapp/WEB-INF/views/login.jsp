@@ -7,7 +7,7 @@
 <%--System.out.println("basePath="+basePath);--%>
 <%--%>--%>
 <%--<base href="<%=basePath%>" >--%>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>翻转式用户登录注册界面设计</title>
