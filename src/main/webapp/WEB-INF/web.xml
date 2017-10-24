@@ -29,8 +29,19 @@
                 <param-value>classpath:spring/spring-mybatis.xml</param-value>
         </context-param>
 
+        <context-param>
+                <param-name>log4jConfigLocation</param-name>
+                <param-value>classpath:log4j.properties</param-value>
+        </context-param>
+
+        <!-- 注册ServletContext监听器，创建容器对象，并且将ApplicationContext对象放到Application域中 -->
+        <!-- 启动加载spring容器 -->
         <listener>
                 <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        </listener>
+        <!--log4j监听器-->
+        <listener>
+                <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
         </listener>
         <!-- 防止spring内存溢出监听器，比如quartz -->
         <listener>
