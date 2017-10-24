@@ -1,16 +1,21 @@
 package com.bays.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bays.model.User;
 import com.bays.service.UserService;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,12 +26,32 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+//    @ResponseBody
     @RequestMapping("all")
-    public String findAll(HttpServletRequest request,Model model){
+    public String findAll(){
         List<Map> all = userService.findAll();
-        request.setAttribute("list",all);
+//        request.setAttribute("list",all);
         logger.info("index 运行成功..."+all.toString());
-        return "index";
+        Map map = all.get(0);
+        User user = new User();
+        user.setAddTime((Date) map.get("add_time"));
+        user.setEmail((String) map.get("email"));
+        user.setUserName((String) map.get("user_name"));
+        Gson gson = new Gson();
+        String s = gson.toJson(user);
+        return "login";
+    }
+    @ResponseBody
+    @RequestMapping("/save")
+    @Transactional(propagation= Propagation.REQUIRED,rollbackForClassName="Exception")
+    public String save(User user){
+        user.setAddTime(new Date());
+        user.setStatus(1);
+        int i = userService.saveUser(user);
+        if(i>0){
+            return "ok";
+        }
+        return "NO";
     }
 
 }

@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Hello World!</h2>
+<h2>
+    <a href="http://localhost:8080/user/all">登录</a>
+</h2>
 </body>
 </html>
