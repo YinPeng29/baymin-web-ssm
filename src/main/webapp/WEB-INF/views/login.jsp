@@ -12,14 +12,14 @@
     <meta charset="UTF-8">
     <title>翻转式用户登录注册界面设计</title>
     <link rel="stylesheet" type="text/css" href="../../statics/css/styles.css">
-    <!--[if IE]>
-    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
-    <script src="../../statics/js/jquery-3.1.1.min.js"></script>
-    <![endif]-->
+
+    <script type="text/javascript" src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <script type="text/javascript" src="../../statics/plugins/jquery-1.5.1.min.js"></script>
+
 </head>
 
 <body>
-<form id="loginForm" action="/user/login" method="post">
+<form id="loginForm" action="" method="post">
 <div class="jq22-container" style="padding-top:100px">
     <div class="login-wrap">
         <div class="login-html">
@@ -29,18 +29,18 @@
                 <div class="sign-in-htm">
                     <div class="group">
                         <label for="userName" class="label">Username</label>
-                        <input id="userName" name="userName" type="text" class="input">
+                        <input id="userName" name="userName" type="text" class="input" />
                     </div>
                     <div class="group">
                         <label for="passWord" class="label">Password</label>
-                        <input id="passWord" name="passWord" type="password" class="input" data-type="password">
+                        <input id="passWord" name="passWord" type="password" class="input" data-type="password" />
                     </div>
                     <div class="group">
-                        <input id="check" name="check" type="checkbox" class="check">
+                        <input id="check" name="check" type="checkbox" class="check" />
                         <label for="check"><span class="icon"></span> Keep me Signed in</label>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Sign In">
+                        <input id="signIn" type="button" class="button" value="Sign In">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
@@ -50,26 +50,26 @@
                 <div class="sign-up-htm">
                     <div class="group">
                         <label for="uuser" class="label">Username</label>
-                        <input id="uuser" type="text" class="input">
+                        <input id="uuser" name="username" type="text" class="input" />
                     </div>
                     <div class="group">
                         <label for="upass" class="label">Password</label>
-                        <input id="upass" type="password" class="input" data-type="password">
+                        <input id="upass" name="password" type="password" class="input" data-type="password" />
                     </div>
                     <div class="group">
                         <label for="rpass" class="label">Repeat Password</label>
-                        <input id="rpass" type="password" class="input" data-type="password">
+                        <input id="rpass" name="rpassWord" type="password" class="input" data-type="password" />
                     </div>
                     <div class="group">
                         <label for="email" class="label">Email Address</label>
-                        <input id="email" type="text" class="input">
+                        <input id="email" name="email" type="text" class="input" />
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Sign Up">
+                        <input id="signUp" type="button" class="button" value="Sign Up" />
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
-                        <label for="tab-1">Already Member?></label></a>
+                        <a><label for="tab-1">Already Member?></label></a>
                     </div>
                 </div>
             </div>
@@ -77,6 +77,28 @@
     </div>
 </div>
 </form>
+<script>
+    $(function(){
+        $("#signIn").click(function(){
+            $("#loginForm").attr("action","/user/login");
+            $("#loginForm").submit();
+        });
+
+        $("#signUp").click(function(){
+              var rpass = $("#rpass").val();
+              var pass = $("#upass").val();
+              if(rpass == pass){
+                  $("#loginForm").attr("action","/user/save");
+                  $("#loginForm").submit();
+              }else{
+                  alert("两次输入的密码不同");
+              }
+
+        });
+
+    });
+
+</script>
 </body>
 </html>
 

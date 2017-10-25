@@ -55,16 +55,21 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping("/save")
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
     @Transactional(propagation= Propagation.REQUIRED,rollbackForClassName="Exception")
-    public String save(User user){
+    public String save(User user,HttpServletRequest request){
+        logger.info("user info: "+ user.toString());
+        String passWord = request.getParameter("password");
+        String username = request.getParameter("username");
+        user.setUserName(username);
+        user.setPassWord(passWord);
         user.setAddTime(new Date());
         user.setStatus(1);
         int i = userService.saveUser(user);
         if(i>0){
-            return "ok";
+            return "注册成功";
         }
-        return "NO";
+        return "无法完成注册！！";
     }
 
 }
