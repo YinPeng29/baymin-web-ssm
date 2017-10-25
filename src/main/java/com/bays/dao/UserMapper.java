@@ -12,6 +12,23 @@ import java.util.Map;
  */
 @Repository
 public interface UserMapper {
-    public List<Map> findAll();
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<Map> findAll();
+
+    /**
+     * 保存用户
+     * @param user
+     * @return
+     */
     int insert (@Param("user") User user);
+
+    /**
+     * 用户验证
+     * @param user
+     * @return
+     */
+    User selectUser(@Param("user") User user);
 }

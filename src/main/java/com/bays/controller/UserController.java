@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,17 @@ public class UserController {
         String s = gson.toJson(user);
         return "login";
     }
+
+    @RequestMapping(value = "/login",method= RequestMethod.POST)
+    @ResponseBody
+    public String login(User user,HttpServletRequest request){
+        User user1 = userService.selectUser(user);
+        if(user1 != null){
+            return "用户验证成功";
+        }
+        return "用户名或者密码错误!!";
+    }
+
     @ResponseBody
     @RequestMapping("/save")
     @Transactional(propagation= Propagation.REQUIRED,rollbackForClassName="Exception")

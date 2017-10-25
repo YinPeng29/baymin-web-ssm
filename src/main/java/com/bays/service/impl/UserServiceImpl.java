@@ -23,4 +23,12 @@ public class UserServiceImpl implements UserService {
         int insert = userMapper.insert(user);
         return insert;
     }
+
+    public User selectUser(User user) {
+        User resUser = userMapper.selectUser(user);
+        if(resUser !=null){
+            return resUser;
+        }
+        return null;
+    }
 }

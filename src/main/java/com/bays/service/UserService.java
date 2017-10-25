@@ -8,4 +8,5 @@ import java.util.Map;
 public interface UserService {
     public List<Map> findAll();
     public int saveUser(User user);
+    public User selectUser(User user);
 }
