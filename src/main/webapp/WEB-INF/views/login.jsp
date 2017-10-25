@@ -84,7 +84,7 @@
             $("#loginForm").submit();
         });
 
-//        注册简单验证
+//       注册简单验证
         $("#signUp").click(function(){
               var rpass = $("#rpass").val();
               var pass = $("#upass").val();
