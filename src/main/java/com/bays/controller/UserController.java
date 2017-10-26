@@ -69,7 +69,6 @@ public class UserController {
         if(i>0){
             return "注册成功!";
 
-
         }
         return "无法完成注册！！";
     }
