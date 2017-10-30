@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by yinpeng on 2017/10/30.
  */
 public class MD5Tool {
-    public static String Md5Encoder(String str,String codeStyle) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String Md5Encoder(String str,String codeStyle){
         //md5 加密工具
 //        MessageDigest md5 = MessageDigest.getInstance("MD5");
 //        BASE64Encoder base64Encoder = new BASE64Encoder();
@@ -31,7 +31,7 @@ public class MD5Tool {
     }
 
     //二进制转十六进制
-    public static String byteToHex(byte[] bytes){
+    private static String byteToHex(byte[] bytes){
         StringBuffer hexStr = new StringBuffer();
         int num;
         for(int i=0;i<bytes.length;i++){
