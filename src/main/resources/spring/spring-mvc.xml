@@ -38,6 +38,25 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!--使用json 配置-->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJackson2HttpMessageConverter"></ref>
+            </list>
+        </property>
+    </bean>
+    <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>text/json;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <!--json 配置结束-->
+
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="com.bays.controller">
         <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>-->
@@ -65,5 +84,34 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="resolveLazily" value="true"/>
     </bean>
+
+    <!--加载mail配置文件-->
+    <bean id="mailConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:mail.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="${mail_from}" />
+    </bean>
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="host" value="${mail_host}"></property>
+        <property name="username" value="${mail_username}"></property>
+        <property name="password" value="${mail_password}"></property>
+        <property name="javaMailProperties">
+            <props>
+                <!--设置认证开关-->
+                <prop key="mail.smtp.auth">true</prop>
+                <!--启动调试开关-->
+                <prop key="mail.debug">true</prop>
+                <!--设置发送延时-->
+                <prop key="mail.smtp.timeout">0</prop>
+            </props>
+        </property>
+    </bean>
+    <!--mail 配置结束-->
 
 </beans>

@@ -1,2 +1,5 @@
 
-!/.idea/
+/.idea/
+/baymin-web-ssm.iml
+target/
+!/.gitignore
