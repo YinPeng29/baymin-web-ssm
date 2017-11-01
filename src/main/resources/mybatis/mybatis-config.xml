@@ -28,6 +28,8 @@
 
     <plugins>
         <!-- 分页插件 -->
-        <plugin interceptor="com.github.pagehelper.PageHelper"/>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="helperDialect" value="mysql"></property>
+        </plugin> 
     </plugins>
 </configuration>
