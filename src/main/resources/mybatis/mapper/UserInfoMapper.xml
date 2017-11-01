@@ -16,4 +16,8 @@
     <select id="selectUser" resultType="com.bays.model.User">
         SELECT * FROM user_info WHERE user_name=#{user.userName} and password=#{user.passWord}
     </select>
+
+    <select id="findUserByName" resultType="java.util.Map">
+        SELECT *  FROM user_info WHERE  user_name = #{username}
+    </select>
 </mapper>

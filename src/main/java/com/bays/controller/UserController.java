@@ -70,6 +70,10 @@ public class UserController {
         user.setPassWord(passWord);
         user.setAddTime(new Date());
         user.setStatus(1);
+        List<Map> userByName = userService.findUserByName(username);
+        if(userByName.size() > 0){
+            return "用户已经存在";
+        }
         int i = userService.saveUser(user);
         if(i>0){
             return "注册成功!";

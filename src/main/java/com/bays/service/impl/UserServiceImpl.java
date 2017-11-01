@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    public List<Map> findUserByName(String username) {
+        List<Map> userByName = userMapper.findUserByName(username);
+        return userByName;
+    }
 }

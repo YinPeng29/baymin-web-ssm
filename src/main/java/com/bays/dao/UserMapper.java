@@ -31,4 +31,6 @@ public interface UserMapper {
      * @return
      */
     User selectUser(@Param("user") User user);
+
+    List<Map> findUserByName(@Param("username")String username);
 }
