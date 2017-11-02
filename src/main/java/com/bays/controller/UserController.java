@@ -5,6 +5,7 @@ import com.bays.model.User;
 import com.bays.service.UserService;
 import com.bays.utils.DateTool;
 import com.bays.utils.MD5Tool;
+import com.bays.utils.MailUtil;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,13 @@ public class UserController {
         String yinpeng = MD5Tool.Md5Encoder("yinpeng", "utf-8");
         System.out.println("md5.....===>>> "+ yinpeng);
         String today = DateTool.tempToDate(DateTool.catchDate(3).get("otherDay"));//获取三天后的日期
+        try {
+            MailUtil.sendMail("<h2>请点击下图,激活您的帐号</h2>"+
+                    "<a href='http://localhost:8080'><img src='http://localhost:8080/statics/image/bg.jpg'></a>",
+                    "542260462@qq.com","user");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "login";
     }
 

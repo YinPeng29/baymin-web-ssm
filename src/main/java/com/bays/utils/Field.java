@@ -8,6 +8,9 @@ public class Field {
     public static final String comma = ",";
     public static final int startPage = 1;
     public static final int endPage = 5;
+    public static final String TRUE ="true";
+    public static final String FALSE ="false";
+    public static final String ENCODE="UTF-8";
 
     /**
      * 公共字段
