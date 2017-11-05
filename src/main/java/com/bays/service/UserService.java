@@ -11,4 +11,5 @@ public interface UserService {
     int saveUser(User user);
     User selectUser(User user);
     List<Map> findUserByName(String username);
+    int updateUser(int status,String username,String uuid);
 }

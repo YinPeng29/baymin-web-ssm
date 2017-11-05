@@ -1,5 +1,8 @@
 package com.bays.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -22,6 +25,7 @@ public class MailUtil {
     public static final String MAIL_HOST_ADDRESS = "smtp.163.com";      //发件人邮箱服务器地址 这里使用网易服务器
     public static final String MAIL_AUTH = "mail.smtp.auth";
     public static final String MAIL_HEADER = "text/html;charset=UTF-8";
+    private static final Logger logger = LoggerFactory.getLogger(MailUtil.class);
 
     /**
      *
@@ -30,7 +34,7 @@ public class MailUtil {
      * @param username              收件人姓名
      * @throws Exception
      */
-    public static void sendMail(String body,String receiveMailAddress,String username) throws Exception {
+    public static void sendMail(String body,String receiveMailAddress,String username) {
         Properties prop = new Properties();
         prop.setProperty(MAIL_TRANSPORT_PROCOTOL,MAIL_SERVER_NAME);  //邮箱协议 javaMail规范
         prop.setProperty(MAIL_HOST_TYPE,MAIL_HOST_ADDRESS);      //smtp
@@ -41,6 +45,7 @@ public class MailUtil {
         //设置为debug模式 true/false true 启动调试控制台可以看到调试信息
         session.setDebug(false);
         // 根据 Session 获取邮件传输对象
+        try{
         Transport transport = session.getTransport();
         MimeMessage mimeMessage = createMail(session,myEmailAccount,receiveMailAddress,username,body);
         transport = session.getTransport();
@@ -48,6 +53,10 @@ public class MailUtil {
         //发送邮件, 发到所有的收件地址, message.getAllRecipients()
         transport.sendMessage(mimeMessage,mimeMessage.getAllRecipients());
         transport.close();
+        }catch(Exception e){
+            logger.error("com.bays.utils.MailUtil.sendMail",e);
+            e.printStackTrace();
+        }
     }
 
     /**

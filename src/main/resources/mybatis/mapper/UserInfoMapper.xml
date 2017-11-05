@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insert">
-        insert into user_info(user_name,password,email,status,add_time) values (#{user.userName},#{user.passWord},
-        #{user.email},#{user.status},#{user.addTime})
+        insert into user_info(user_name,password,email,status,add_time,UUID) values (#{user.userName},#{user.passWord},
+        #{user.email},#{user.status},#{user.addTime},#{user.uuid})
     </insert>
 
     <select id="selectUser" resultType="com.bays.model.User">
@@ -20,4 +20,8 @@
     <select id="findUserByName" resultType="java.util.Map">
         SELECT *  FROM user_info WHERE  user_name = #{username}
     </select>
+
+    <update id="updateStatus">
+        update user_info SET status=#{status} WHERE user_name = #{username} and UUID=#{uuid}
+    </update>
 </mapper>

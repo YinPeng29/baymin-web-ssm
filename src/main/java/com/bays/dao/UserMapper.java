@@ -33,4 +33,6 @@ public interface UserMapper {
     User selectUser(@Param("user") User user);
 
     List<Map> findUserByName(@Param("username")String username);
+
+    int updateStatus(@Param("status")int status,@Param("username")String username,@Param("uuid")String uuid);
 }

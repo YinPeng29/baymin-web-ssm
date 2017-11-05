@@ -10,6 +10,7 @@ public class User {
     private int status;
     private Date addTime;
     private Date latest_login_time;
+    private String uuid;
 
     public int getId() {
         return id;
@@ -67,6 +68,14 @@ public class User {
         this.latest_login_time = latest_login_time;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -77,6 +86,7 @@ public class User {
                 ", status=" + status +
                 ", addTime=" + addTime +
                 ", latest_login_time=" + latest_login_time +
+                ", uuid=" + uuid +
                 '}';
     }
 }

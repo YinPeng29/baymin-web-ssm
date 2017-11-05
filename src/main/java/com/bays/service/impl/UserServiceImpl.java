@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
         List<Map> userByName = userMapper.findUserByName(username);
         return userByName;
     }
+
+    public int updateUser(int status, String username,String uuid) {
+        int updateUser = userMapper.updateStatus(status, username,uuid);
+        return updateUser;
+    }
 }
